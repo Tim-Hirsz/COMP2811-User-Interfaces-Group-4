@@ -13,12 +13,15 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>60</y>
-     <width>311</width>
+     <x>50</x>
+     <y>50</y>
+     <width>401</width>
      <height>51</height>
     </rect>
    </property>
@@ -65,6 +68,7 @@ color: rgb(255, 255, 255)</string>
 background-color: rgb(152, 152, 152);
 font: 9pt &quot;Segoe MDL2 Assets&quot;;
 padding-left: 5px;
+border-color:white;
 border-radius: 5px</string>
    </property>
    <property name="text">
@@ -164,7 +168,7 @@ border-radius: 5px</string>
     <rect>
      <x>90</x>
      <y>390</y>
-     <width>131</width>
+     <width>151</width>
      <height>16</height>
     </rect>
    </property>
@@ -179,10 +183,10 @@ color: rgb(255, 255, 255)</string>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>120</y>
-     <width>111</width>
-     <height>16</height>
+     <x>100</x>
+     <y>109</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -193,7 +197,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <string>Already registered?</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="s">
+  <widget class="QPushButton" name="signUp_button">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -220,7 +224,7 @@ border-radius: 5px</string>
     <rect>
      <x>240</x>
      <y>108</y>
-     <width>101</width>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
@@ -275,7 +279,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
   <zorder>label_password</zorder>
   <zorder>label_confirm_password</zorder>
   <zorder>label_6</zorder>
-  <zorder>s</zorder>
+  <zorder>signUp_button</zorder>
   <zorder>commandLinkButton</zorder>
   <zorder>lineEdit_username</zorder>
   <zorder>lineEdit_email</zorder>

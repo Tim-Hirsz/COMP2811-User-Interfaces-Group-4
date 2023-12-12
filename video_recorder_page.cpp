@@ -3,9 +3,16 @@
 #include <QUrl>
 
 VideoRecorderPage::VideoRecorderPage(QWidget *parent) : QWidget(parent) {
+    setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #29465B, stop:1 #36454F);");
     topLayout = new QVBoxLayout(this);
     setWindowTitle("Video Recorder");
-    setMinimumSize(400, 340);
+    //setMinimumSize(400, 340);
+    setMaximumSize(600, 700);
+
+    //create home button
+    homeButton = new QPushButton("Home", this);
+    homeButton->setFixedSize(100, 60);
+    topLayout->addWidget(homeButton);
 
     camera = new QCamera(this);
     viewfinder = new QCameraViewfinder(this);
@@ -31,6 +38,7 @@ VideoRecorderPage::VideoRecorderPage(QWidget *parent) : QWidget(parent) {
 
     connect(recordButton, &QPushButton::clicked, this, &VideoRecorderPage::startRecording);
     connect(stopButton, &QPushButton::clicked, this, &VideoRecorderPage::stopRecording);
+    connect(homeButton, &QPushButton::clicked, this, &VideoRecorderPage::closeVideoPage);
 
     topLayout->addWidget(recordButton);
     topLayout->addWidget(stopButton);
@@ -50,5 +58,9 @@ void VideoRecorderPage::startRecording() {
 void VideoRecorderPage::stopRecording() {
     mediaRecorder->stop();
     qDebug() << "Recording state: " << mediaRecorder->state();
+}
+
+void VideoRecorderPage::closeVideoPage() {
+    emit closingVideo();
 }
 

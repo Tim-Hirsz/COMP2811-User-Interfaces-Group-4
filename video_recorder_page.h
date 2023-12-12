@@ -14,9 +14,13 @@ class VideoRecorderPage : public QWidget {
 public:
     VideoRecorderPage(QWidget *parent = nullptr);
 
+signals:
+    void closingVideo();
+
 private slots:
     void startRecording();
     void stopRecording();
+    void closeVideoPage();
 
 private:
     QVBoxLayout *topLayout;
@@ -25,6 +29,7 @@ private:
     QMediaRecorder *mediaRecorder;
     QPushButton *recordButton;
     QPushButton *stopButton;
+    QPushButton *homeButton;
 };
 
 #endif // VIDEO_RECORDER_PAGE_H

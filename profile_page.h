@@ -18,6 +18,8 @@ public:
     explicit ProfilePage(QWidget *parent = nullptr);
     ~ProfilePage();
 
+signals:
+    void closeProfile();
 
 private slots:
     void on_Tool_to_change_img_clicked();

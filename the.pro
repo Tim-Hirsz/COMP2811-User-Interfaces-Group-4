@@ -34,8 +34,13 @@ FORMS += \
     user_login_page.ui \
     user_signup_page.ui
 
+#RESOURCES += \
+#    pic.qrc
+
 RESOURCES += \
-    Profile_resource.qrc
+    Profile_resource.qrc \
+    homePage_Icons.qrc \
+    signupPage_bg.qrc
 
 
 

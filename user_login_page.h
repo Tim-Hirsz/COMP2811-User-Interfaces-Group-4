@@ -20,6 +20,7 @@ public:
 
 signals:
     void login_Successful();
+    void create_an_account();
 
 private:
     Ui::User_Login_Page *ui;
