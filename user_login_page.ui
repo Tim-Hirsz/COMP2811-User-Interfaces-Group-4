@@ -17,7 +17,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/Desktop/Login_Page/제목 없는 디자인-2.png);
+   <string notr="true">
 
 background-repeat: no-repeat;
 </string>
@@ -25,10 +25,10 @@ background-repeat: no-repeat;
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>120</y>
-     <width>131</width>
-     <height>61</height>
+     <x>100</x>
+     <y>80</y>
+     <width>231</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,9 +44,9 @@ font: 600 48pt &quot;Gill Sans&quot;;
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>80</x>
      <y>180</y>
-     <width>151</width>
+     <width>281</width>
      <height>61</height>
     </rect>
    </property>
@@ -62,9 +62,9 @@ font: 300 20pt &quot;Gill Sans&quot;;</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>260</y>
-     <width>91</width>
-     <height>21</height>
+     <y>250</y>
+     <width>181</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -79,9 +79,9 @@ font: 18pt &quot;Gill Sans&quot;;</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>380</y>
-     <width>101</width>
-     <height>20</height>
+     <y>369</y>
+     <width>181</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -147,9 +147,9 @@ border-radius: 10px;</string>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>10</x>
      <y>550</y>
-     <width>121</width>
+     <width>211</width>
      <height>51</height>
     </rect>
    </property>
@@ -158,7 +158,7 @@ border-radius: 10px;</string>
 font: italic 16pt &quot;Gill Sans&quot;;</string>
    </property>
    <property name="text">
-    <string>New to ForReal? </string>
+    <string>New to ForReel? </string>
    </property>
   </widget>
   <widget class="QPushButton" name="SignUp_Button">

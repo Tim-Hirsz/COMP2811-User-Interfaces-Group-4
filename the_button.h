@@ -1,3 +1,7 @@
+//
+//
+//
+
 #ifndef CW2_THE_BUTTON_H
 #define CW2_THE_BUTTON_H
 
@@ -19,9 +23,9 @@ class TheButton : public QPushButton {
 public:
     TheButtonInfo* info;
 
-    TheButton(QWidget *parent) :  QPushButton(parent) {
-        setIconSize(QSize(200,110));
-        connect(this, SIGNAL(released()), this, SLOT (clicked() )); // if QPushButton clicked...then run clicked() below
+     TheButton(QWidget *parent) :  QPushButton(parent) {
+         setIconSize(QSize(200,110));
+         connect(this, SIGNAL(released()), this, SLOT (clicked() )); // if QPushButton clicked...then run clicked() below
     }
 
     void init(TheButtonInfo* i);

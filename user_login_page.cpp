@@ -11,6 +11,7 @@ User_Login_Page::User_Login_Page(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     // Connect the handleLoginButtonClicked() slot when the login button is clicked
     connect(ui->Login_Button, &QPushButton::clicked, this, &User_Login_Page::on_Login_Button_Clicked);
 
@@ -46,14 +47,6 @@ void User_Login_Page::on_Login_Button_Clicked()
 
 void User_Login_Page::on_SignUp_Button_Clicked()
 {
-    this->hide();
+    emit create_an_account();
 
-    // Check if User_SignUp_Page is not null before showing
-    if (!User_SignUp_Page) {
-        // Initialize the create account page if it's not already
-        User_SignUp_Page = new class User_SignUp_Page(nullptr);  // 부모를 nullptr로 설정
-    }
-
-    // Show the create account page
-    User_SignUp_Page->show();
 }

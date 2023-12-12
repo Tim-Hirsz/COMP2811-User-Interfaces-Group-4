@@ -1,13 +1,15 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>Background.png</file>
-        <file>../Downloads/185038_home_house_icon.png</file>
-        <file>../Downloads/185038_home_house_icon-2.png</file>
-        <file>../Downloads/185038_home_house_icon-3.png</file>
-        <file>../Downloads/185038_home_house_icon-4.png</file>
-        <file>../Downloads/4831012_account_boy_man_people_profile_icon.png</file>
-        <file>../Downloads/619539_close_delete_dismiss_exit_cancel_icon.png</file>
-        <file>../Downloads/7754950_media player_button_play_start_begin_icon.png</file>
-        <file>../Downloads/7754950_media player_button_play_start_begin_icon-2.png</file>
+        <file>icons_Profile_page/185038_home_house_icon.png</file>
+        <file>icons_Profile_page/185038_home_house_icon-2.png</file>
+        <file>icons_Profile_page/185038_home_house_icon-3.png</file>
+        <file>icons_Profile_page/185038_home_house_icon-4.png</file>
+        <file>icons_Profile_page/619539_close_delete_dismiss_exit_cancel_icon.png</file>
+        <file>icons_Profile_page/4831012_account_boy_man_people_profile_icon.png</file>
+        <file>icons_Profile_page/7754950_media player_button_play_start_begin_icon.png</file>
+        <file>icons_Profile_page/7754950_media player_button_play_start_begin_icon-2.png</file>
+        <file>icons_Profile_page/baseline_close_black_24dp.png</file>
+        <file>icons_Profile_page/baseline_close_white_24dp.png</file>
+        <file>icons_Profile_page/pfp_change.png</file>
     </qresource>
 </RCC>

@@ -24,6 +24,7 @@
 #include "profile_page.h"
 #include "video_recorder_page.h"
 #include "user_login_page.h"
+#include <QThread>
 
 // read in videos and thumbnails to this directory
 std::vector<TheButtonInfo> getInfoIn(std::string loc) {
@@ -89,6 +90,9 @@ int main(int argc, char *argv[]) {
     // Create the login page
     User_Login_Page loginPage;
 
+    //create signup page
+    User_SignUp_Page signUpPage;
+
     // Main window
     QWidget mainWindow;
     mainWindow.setWindowTitle("TOMEO");
@@ -115,6 +119,7 @@ int main(int argc, char *argv[]) {
     window.setWindowTitle("tomeo");
     window.setMinimumSize(800, 680);
 
+
     // Profile picture (clickable to navigate to profile)
     QPushButton *profilePicButton = new QPushButton("Profile");
     top->addWidget(profilePicButton);
@@ -125,13 +130,21 @@ int main(int argc, char *argv[]) {
                                     "}");
 
     // Connect the button's clicked signal to show the profile page
-    QObject::connect(profilePicButton, &QPushButton::clicked, [&profilePage]() {
+    QObject::connect(profilePicButton, &QPushButton::clicked, [&profilePage, &mainWindow]() {
+        mainWindow.close();
         profilePage.exec();
     });
 
+    QObject::connect(&profilePage, &ProfilePage::closeProfile, [&mainWindow, &profilePage]() {
+        profilePage.close();
+        mainWindow.show();
+    });
+
+
+
     // App name label
-    QLabel *appNameLabel = new QLabel("ForReal.");
-    appNameLabel->setStyleSheet("font-size: 25px; font-weight: bold; color: white");
+    QLabel *appNameLabel = new QLabel("ForReel");
+    appNameLabel->setStyleSheet("font-size: 50px; font-weight: bold; color: white");
 
     // Add stretch to center the app name label
     topBarLayout->addWidget(profilePicButton);
@@ -183,42 +196,44 @@ int main(int argc, char *argv[]) {
         // Like, Share, Comment buttons
         QHBoxLayout *buttonsLayout = new QHBoxLayout();
 
+
         TheButton *likeButton = new TheButton(nullptr);
-        likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"));
+        likeButton->setIcon(QIcon(":/new/prefix1/icons/heart_icon.png"));
         likeButton->setCheckable(true);
         likeButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
         likeButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
         likeButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
 
-
         // Connect the new signal to update the button icon
         QObject::connect(likeButton, &TheButton::likeStateChanged, [likeButton](bool liked) {
             if (liked) {
-                likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/redheart_icon.png"));
+                likeButton->setIcon(QIcon(":/new/prefix1/icons/redheart_icon.png"));
             } else {
-                likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"));
+                likeButton->setIcon(QIcon(":/new/prefix1/icons/heart_icon.png"));
             }
         });
 
+
         // Share button
-        QPushButton *shareButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/share_icon.png"), "");
+        QPushButton *shareButton = new QPushButton(QIcon(":/new/prefix1/icons/share_icon.png"), "");
         shareButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
         shareButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
         shareButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
 
 
         // Comment button
-        QPushButton *commentButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/comment_icon.png"), "");
+        QPushButton *commentButton = new QPushButton(QIcon(":/new/prefix1/icons/comment_icon.png"), "");
         commentButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
         commentButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
         commentButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
 
 
         // Sound button
-        QPushButton *soundButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/muted_icon.png"), "");
+        QPushButton *soundButton = new QPushButton(QIcon(":/new/prefix1/icons/muted_icon.png"), "");
         soundButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
         soundButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
         soundButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
+
 
         // Connect the click event of the soundButton to toggle sound and change the icon
         QObject::connect(soundButton, &QPushButton::clicked, [player, soundButton]() {
@@ -226,17 +241,17 @@ int main(int argc, char *argv[]) {
 
             // Toggle the icon based on the sound state
             if (player->isMuted()) {
-                soundButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/muted_icon.png"));
+                soundButton->setIcon(QIcon(":/new/prefix1/icons/muted_icon.png"));
             } else {
-                soundButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/sound_icon.png"));
+                soundButton->setIcon(QIcon(":/new/prefix1/icons/sound_icon.png"));
             }
         });
-
 
         // Share button
         QPushButton *noButton = new QPushButton(QIcon(""), "");
         noButton->setIconSize(QSize(30, 30));  // Adjust the size according to your preference
         noButton->setStyleSheet("background-color: transparent; border: none;");
+
 
         // Add buttons to the custom widget
         buttonsLayout->addWidget(likeButton);
@@ -254,6 +269,7 @@ int main(int argc, char *argv[]) {
         // Add video widget to the scroll layout
         scrollLayout->addWidget(videoWidget);
 
+
         // Add a line separator
         QFrame* line = new QFrame();
         line->setFrameShape(QFrame::HLine);
@@ -266,6 +282,38 @@ int main(int argc, char *argv[]) {
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollWidget);
     scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
+
+//        QPushButton *likeButton = new QPushButton(QIcon(":/new/prefix1/icons/heart_icon.png"), "");
+//        // likeButton->setStyleSheet("outline: none;");  // Remove focus border
+//        QPushButton *shareButton = new QPushButton(QIcon(":/new/prefix1/icons/share_icon.png"), "");
+//        // shareButton->setFlat(true);  // Set flat property to remove the button outline
+//        QPushButton *commentButton = new QPushButton(QIcon(":/new/prefix1/icons/comment_icon.png"), "");
+//        // commentButton->setFlat(true);  // Set flat property to remove the button outline
+
+//        // Add the buttons to the layout
+//        buttonsLayout->addWidget(likeButton);
+//        buttonsLayout->addWidget(shareButton);
+//        buttonsLayout->addWidget(commentButton);
+
+//        // Add layouts and widgets to videoLayout
+//        videoLayout->addLayout(userLayout);
+//        videoLayout->addWidget(videoDisplay);
+//        videoLayout->addLayout(buttonsLayout);  // Add buttonsLayout to videoLayout
+
+
+//        // Add video widget to the scroll layout
+//        scrollLayout->addWidget(videoWidget);
+//    }
+
+//    // Set up scroll area
+//    scrollArea->setWidgetResizable(true);
+//    scrollArea->setWidget(scrollWidget);
+
+
+
+
 
     // Add scroll area to the main layout
     mainLayout->addWidget(scrollArea);
@@ -288,8 +336,9 @@ int main(int argc, char *argv[]) {
     VideoRecorderPage videoRecorderPage;
 
     // Connect the button's clicked signal to show the profile page
-    QObject::connect(navigateButton, &QPushButton::clicked, [&videoRecorderPage]() {
+    QObject::connect(navigateButton, &QPushButton::clicked, [&videoRecorderPage, &mainWindow]() {
         videoRecorderPage.show();
+        mainWindow.close();
     });
 
     bottomBarLayout->addWidget(navigateButton, 0, Qt::AlignCenter);
@@ -297,9 +346,32 @@ int main(int argc, char *argv[]) {
     // Add bottom bar to the main layout
     mainLayout->addWidget(bottomBarWidget);
 
-    QObject::connect(&loginPage, &User_Login_Page::login_Successful, [&mainWindow]() {
+    QObject::connect(&loginPage, &User_Login_Page::login_Successful, [&mainWindow, &loginPage]() {
         mainWindow.show();
+        loginPage.close();
     });
+
+    QObject::connect(&videoRecorderPage, &VideoRecorderPage::closingVideo, [&mainWindow, &videoRecorderPage]() {
+        mainWindow.show();
+        videoRecorderPage.close();
+    });
+
+    QObject::connect(&loginPage, &User_Login_Page::create_an_account, [&loginPage, &signUpPage]() {
+        loginPage.close();
+        signUpPage.show();
+    });
+
+    QObject::connect(&signUpPage, &User_SignUp_Page::createAccountSuccess, [&signUpPage, &mainWindow]() {
+        mainWindow.show();
+        signUpPage.close();
+    });
+
+    QObject::connect(&signUpPage, &User_SignUp_Page::returnToLoginPage, [&signUpPage, &loginPage]() {
+        loginPage.show();
+        signUpPage.close();
+    });
+
+
 
     // Show the login page
     loginPage.show();

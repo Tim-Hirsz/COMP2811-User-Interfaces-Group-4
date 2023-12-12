@@ -15,9 +15,14 @@ public:
     explicit User_SignUp_Page(QWidget *parent = nullptr);
     ~User_SignUp_Page();
 
+signals:
+    void createAccountSuccess();
+    void returnToLoginPage();
+
 private slots:
 
     void on_SignUp_Button_Clicked();
+    void back_To_Login_Page();
 
 private:
     Ui::User_SignUp_Page *ui;

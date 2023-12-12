@@ -61,7 +61,11 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 2px solid rgb(255, 255, 255);</string>
+    <string notr="true">border: 2px solid rgb(0, 255, 255);
+background-color: white;</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -181,6 +185,25 @@ image: url(:/new/prefix1/icons_Profile_page/7754950_media player_button_play_sta
     <string notr="true">border: 1px solid rgb(0, 0, 0);
 image: url(:/new/prefix1/icons_Profile_page/619539_close_delete_dismiss_exit_cancel_icon.png);
 </string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="Tool_to_change_img_2">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>130</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid rgb(0, 0, 0);
+border-radius: 75px;
+image: url(:/new/prefix1/icons_Profile_page/pfp_change.png);
+background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string/>
