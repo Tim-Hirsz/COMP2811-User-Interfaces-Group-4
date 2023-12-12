@@ -7,13 +7,19 @@
 #include <QMediaPlayer>
 #include <QVideoWidget>
 #include <QVBoxLayout>
+#include "video_recorder_page.h"
 
 ProfilePage::ProfilePage( QWidget *parent) : QDialog(parent), ui(new Ui::ProfilePage) {
     ui->setupUi(this);
 
+
+
     // Play 버튼 클릭 시 연결할 슬롯 함수를 설정합니다.
     connect(ui->Play_Button_1, &QPushButton::clicked, this, &ProfilePage::on_Play_Button_1_Clicked);
     connect(ui->Play_Button_2, &QPushButton::clicked, this, &ProfilePage::on_Play_Button_2_Clicked);
+
+    // connector to close button
+    connect(ui -> Close_Button, &QPushButton::clicked, this, &ProfilePage::on_Close_Button_Clicked);
 
     // connector to change image for user
     connect(ui->Tool_to_change_img, SIGNAL(clicked()), this, SLOT(on_Tool_to_change_img_clicked()));
@@ -51,8 +57,18 @@ void ProfilePage::on_Homebutton_clicked() {
     // 다음에는 홈 페이지를 보여주는 코드를 추가하세요.
 }
 
+void ProfilePage::on_Close_Button_Clicked() {
+
+    //tool to close ProfilePage
+    close();
+
+
+}
+
+
 void ProfilePage::on_Play_Button_1_Clicked()
 {
+
     QString videoPath = QFileDialog::getOpenFileName(this, "Open Video", QDir::homePath(), "Videos (*.mp4 *.avi *.mkv)");
 
     if (!videoPath.isEmpty()) {

@@ -21,6 +21,8 @@
 #include <QStackedWidget>
 #include <QLabel>
 #include <QScrollArea>
+#include "profile_page.h"
+#include "video_recorder_page.h"
 
 // read in videos and thumbnails to this directory
 std::vector<TheButtonInfo> getInfoIn(std::string loc) {
@@ -62,6 +64,7 @@ struct VideoInfo {
     // Add more fields as needed
 };
 
+
 int main(int argc, char *argv[]) {
     // let's just check that Qt is operational first
     qDebug() << "Qt version: " << QT_VERSION_STR << endl;
@@ -84,28 +87,43 @@ int main(int argc, char *argv[]) {
     }
 
     // Main window
-    QWidget mainWindow;
-    mainWindow.setWindowTitle("TOMEO");
+    QWidget *mainWindow = new QWidget();
+    mainWindow->setWindowTitle("TOMEO");
 
     // Set background color
-    mainWindow.setStyleSheet("background-color: #36454F;");
+    mainWindow->setStyleSheet("background-color: #36454F;");
 
     // Main layout
-    QVBoxLayout *mainLayout = new QVBoxLayout(&mainWindow);
+    QVBoxLayout *mainLayout = new QVBoxLayout(mainWindow);
 
     // Top bar with picture and app name
     QWidget *topBarWidget = new QWidget();
     QHBoxLayout *topBarLayout = new QHBoxLayout(topBarWidget);
     topBarWidget->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #29465B, stop:1 #36454F);");
 
+    // Create the profile page
+    ProfilePage profilePage;
+
+    // Create the main window and layout
+    QWidget window;
+    QVBoxLayout *top = new QVBoxLayout();
+    window.setLayout(top);
+    window.setWindowTitle("tomeo");
+    window.setMinimumSize(800, 680);
 
     // Profile picture (clickable to navigate to profile)
     QPushButton *profilePicButton = new QPushButton("Profile");
+    top->addWidget(profilePicButton);
     profilePicButton->setFixedSize(100, 100);
     profilePicButton->setStyleSheet("QPushButton {"
                                     "    border-radius: 50px;"
                                     "    background-color: #6D7B8D;"
                                     "}");
+
+    // Connect the button's clicked signal to show the profile page
+    QObject::connect(profilePicButton, &QPushButton::clicked, [&profilePage]() {
+        profilePage.exec();
+    });
 
     // App name label
     QLabel *appNameLabel = new QLabel("ForReal.");
@@ -161,11 +179,11 @@ int main(int argc, char *argv[]) {
         // Like, Share, Comment buttons
         QHBoxLayout *buttonsLayout = new QHBoxLayout();
 
-        QPushButton *likeButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"), "");
+        QPushButton *likeButton = new QPushButton(QIcon("C:/Users/lucky/Downloads/COMP2811-User-Interfaces-Group-4-main (1)/icons/heart_icon.png"), "");
         // likeButton->setStyleSheet("outline: none;");  // Remove focus border
-        QPushButton *shareButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/share_icon.png"), "");
+        QPushButton *shareButton = new QPushButton(QIcon("C:/Users/lucky/Downloads/COMP2811-User-Interfaces-Group-4-main (1)/icons/share_icon.png"), "");
         // shareButton->setFlat(true);  // Set flat property to remove the button outline
-        QPushButton *commentButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/comment_icon.png"), "");
+        QPushButton *commentButton = new QPushButton(QIcon("C:/Users/lucky/Downloads/COMP2811-User-Interfaces-Group-4-main (1)/icons/comment_icon.png"), "");
         // commentButton->setFlat(true);  // Set flat property to remove the button outline
 
         // Add the buttons to the layout
@@ -204,22 +222,45 @@ int main(int argc, char *argv[]) {
                                   "    background-color: #ff4500;"
                                   "}");
 
+    // Set up Video Recorder Page
+    VideoRecorderPage videoRecorderPage;
+
+    // Connect the button's clicked signal to show the profile page
+    QObject::connect(navigateButton, &QPushButton::clicked, [&mainWindow, &videoRecorderPage]() {
+        videoRecorderPage.show();
+
+    });
+
+
+
+
+//    QObject::connect(videoRecorderPage, &videoRecorderPage-close_page, this, &mainWindow, &videoRecorderPage){
+//        mainWindow->show();
+//        // Do something when 'widgetToClose' is closed
+//        // This lambda function will be executed when the widget is destroyed
+//    });
+
+
+
+//    QObject::connect(videoRecorderPage.homeButton, &QPushButton::clicked, [&mainWindow, &videoRecorderPage]() {
+//        mainWindow.show();
+//        videoRecorderPage.close();
+//    });
+
     bottomBarLayout->addWidget(navigateButton, 0, Qt::AlignCenter);
 
     // Add bottom bar to the main layout
     mainLayout->addWidget(bottomBarWidget);
 
-    // Connect the click event of the navigateButton to close the application and open another .cpp
-    QObject::connect(navigateButton, &QPushButton::clicked, [&app]() {
-        app.quit();  // Close the current application
-
-        // Replace "path/to/your/other/cpp" with the actual path to your other .cpp file
-        QDesktopServices::openUrl(QUrl::fromLocalFile("path/to/your/other/cpp"));
-    });
-
     // showtime!
-    mainWindow.show();
+
+
+    mainWindow->show();
 
     // wait for the app to terminate
     return app.exec();
 }
+
+
+
+

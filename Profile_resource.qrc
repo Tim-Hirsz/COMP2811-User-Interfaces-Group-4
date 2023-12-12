@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>Background.png</file>
+        <file>../Downloads/185038_home_house_icon.png</file>
+        <file>../Downloads/185038_home_house_icon-2.png</file>
+        <file>../Downloads/185038_home_house_icon-3.png</file>
+        <file>../Downloads/185038_home_house_icon-4.png</file>
+        <file>../Downloads/4831012_account_boy_man_people_profile_icon.png</file>
+        <file>../Downloads/619539_close_delete_dismiss_exit_cancel_icon.png</file>
+        <file>../Downloads/7754950_media player_button_play_start_begin_icon.png</file>
+        <file>../Downloads/7754950_media player_button_play_start_begin_icon-2.png</file>
+    </qresource>
+</RCC>

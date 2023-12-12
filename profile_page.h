@@ -24,6 +24,7 @@ private slots:
     void on_Homebutton_clicked();
     void on_Play_Button_1_Clicked();
     void on_Play_Button_2_Clicked();
+    void on_Close_Button_Clicked();
 
 
 
